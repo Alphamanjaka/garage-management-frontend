@@ -1,0 +1,29 @@
+<header>
+    <div class="top-header">
+        <div class="opening-hours">Lun-Ven: 8h-18h</div>
+        <div class="contact-info">
+            <span>Contact: +123 456 7890</span>
+        </div>
+        <div class="location-info">
+            <span>Location: Your Address</span>
+        </div>
+        <button class="appointment-button" (click)="makeAppointment()">Make an Appointment</button>
+    </div>
+
+    <!-- Barre de séparation -->
+    <div class="separator"></div>
+
+    <div class="bottom-header">
+        <nav>
+            <ul>
+                <li><a routerLink="/home">Home</a></li>
+                <li><a routerLink="/blog">Blog</a></li>
+                <li><a routerLink="/services">Services</a></li>
+                <li>
+                    <button (click)="toggleMore()">More <span class="icon-chevron-down"></span></button>
+                </li>
+            </ul>
+        </nav>
+        <input type="search" placeholder="Search" [(ngModel)]="searchQuery">
+    </div>
+</header>
