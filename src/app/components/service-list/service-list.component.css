@@ -1,0 +1,58 @@
+.services-container {
+  padding: 20px;
+  /* background-color: #FFFBF0; */
+  background-color: #F5F2FF;
+
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.col-4 {
+  width: 30%;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px 0;
+  
+  /* animation */
+  /* width: 300px; */
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #ccc;
+}
+
+.card-header {
+  font-weight: bold;
+}
+
+.card-body {
+  font-size: 14px;
+}
+
+.card-overlay {
+  position: absolute;
+  bottom: -50px; /* Commence en dehors de l'image */
+  left: 0;
+  width: 100%;
+  background-color: transparent;
+  text-align: center;
+  transition: bottom 0.3s ease; /* Transition fluide lors du survol */
+}
+
+.card-btn {
+  color: white;
+  background-color: #7970E4;
+  border: 2px solid white;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.card:hover .card-overlay {
+  bottom: 0; /* L'overlay se glisse vers le bas */
+}
