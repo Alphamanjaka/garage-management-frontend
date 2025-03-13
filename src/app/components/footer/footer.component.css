@@ -14,3 +14,12 @@
  * limitations under the License.
  */
 
+footer{
+  text-align: center;
+  border: #000000 solid 1px;
+  
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
