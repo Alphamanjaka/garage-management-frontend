@@ -14,13 +14,13 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   private apiUrl = environment.apiUrl;
 
-  login: Login=new Login();
+  login: Login = new Login();
 
-  loading=false;
+  loading = false;
 
-  loginError=false;
+  loginError = false;
 
-  etat=0;
+  etat = 0;
 
   constructor(
 
@@ -32,6 +32,34 @@ export class LoginComponent {
 
     private route: ActivatedRoute
 
-) { }
+  ) { }
+
+  onClick() {
+
+    this.loading = true;
+
+    // this.loginService.login(this.login, this.etat).subscribe(
+    //   (data: any) => {
+    //     if (data.length == 0) {
+    //       this.erreur();
+    //     } else {
+    //       this.correct();
+    //     }
+    //   },
+    //   (error: any) => {
+    //   }
+    // );
+  }
+
+  erreur(){
+    this.loginError = true;
+    this.login.email = "";
+    this.login.password = "";
+    this.loading = false;
+  }
+
+  correct(){
+    this.router.navigate(['/'+this.login.role]);
+  }
 
 }
