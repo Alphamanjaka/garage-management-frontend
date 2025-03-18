@@ -1,2 +1,27 @@
-<p>login works!</p>
-<h1>mandeha</h1>
+<div class="login-container">
+    <h1 class="site-name" (click)="home()">Garage</h1>
+    <div class="login-form">
+        <h2>Connectez-vous à votre compte</h2>
+        <form >
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="text" id="email" name="email" placeholder="Entrez votre adresse E-mail" [(ngModel)]="login.username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" [(ngModel)]="login.password" required>
+            </div>
+            <button type="button" (click)="logIn()">Se connecter</button>
+        </form>
+        <div class="loading-spinner" *ngIf="loading">
+            <div class="spinner"></div>
+            <p>Chargement en cours...</p>
+        </div>
+        <div *ngIf="loginError" class="error-message">
+            Identifiants invalides. Veuillez réessayer.
+        </div>
+        <div class="register-link">
+            <p>Vous n'avez pas de compte ? <a routerLink="/inscription" >Inscrivez-vous ici</a></p>
+        </div>
+    </div>
+</div>
