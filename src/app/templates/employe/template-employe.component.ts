@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-template-employe',
   imports: [],
   templateUrl: './template-employe.component.html',
-  styleUrl: './template-employe.component.css'
+  styleUrl: './template-employe.component.scss'
 })
 export class TemplateEmployeComponent {
 

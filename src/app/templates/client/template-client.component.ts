@@ -7,7 +7,7 @@ import { ServiceListComponent } from '../../components/service-list/service-list
   selector: 'app-template-client',
   imports: [FooterComponent, ServiceListComponent],
   templateUrl: './template-client.component.html',
-  styleUrl: './template-client.component.css'
+  styleUrl: './template-client.component.scss'
 })
 export class TemplateClientComponent {
   searchQuery: any;

@@ -13,7 +13,7 @@ import { FormsModule, NgModel } from '@angular/forms';
   imports: [NgIf,FormsModule],
   standalone:true,
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.scss'
 })
 export class LoginComponent {
   private apiUrl = environment.apiUrl;

@@ -6,7 +6,7 @@ import { ServiceService } from '../../services/service.service';
   selector: 'app-service-list',
   imports: [CommonModule],
   templateUrl: './service-list.component.html',
-  styleUrl: './service-list.component.css'
+  styleUrl: './service-list.component.scss'
 })
 export class ServiceListComponent {
   services: any;

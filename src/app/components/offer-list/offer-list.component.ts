@@ -11,7 +11,7 @@ import { MatChipsModule } from '@angular/material/chips';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
   templateUrl: './offer-list.component.html',
-  styleUrl: './offer-list.component.css'
+  styleUrl: './offer-list.component.scss'
 })
 export class OfferListComponent {
   longText = `The Chihuahua is a Mexican breed of toy dog. It is named for the

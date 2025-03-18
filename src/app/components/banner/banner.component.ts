@@ -7,7 +7,7 @@ import { MatChipsModule } from '@angular/material/chips';
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',
-  styleUrl: './banner.component.css',
+  styleUrl: './banner.component.scss',
   imports: [MatCardModule, MatChipsModule, MatProgressBarModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   changeDetection: ChangeDetectionStrategy.OnPush

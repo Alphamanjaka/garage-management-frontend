@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-template-admin',
   imports: [],
   templateUrl: './template-admin.component.html',
-  styleUrl: './template-admin.component.css'
+  styleUrl: './template-admin.component.scss'
 })
 export class TemplateAdminComponent {
 
