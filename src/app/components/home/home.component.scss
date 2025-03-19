@@ -34,6 +34,10 @@ $font-family: 'Arial', sans-serif;
     border-radius: 5px;
     font-size: 1rem;
 
+    &:hover {
+      background-color: color.adjust($primary-color, $lightness: -10%);
+    }
+
 
   }
 }
