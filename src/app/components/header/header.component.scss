@@ -39,6 +39,7 @@ header {
 .nav-list {
   list-style: none;
   margin: 0;
+  margin-left: 60px;
   padding: 0;
   display: flex;
 }
@@ -55,7 +56,7 @@ header {
       text-decoration: underline;
       color: black;
       transition: color 0.3s ease;
-      
+
     }
   }
 }
