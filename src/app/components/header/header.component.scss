@@ -1,54 +1,51 @@
 header {
-  background-color: rgb(1,2,39);
-  /* background-color: #584940; */
-  
-
-  color: white;
+  background-color: #333;
+  color: #fff;
+  font-family: Arial, sans-serif;
 }
 
-.top-header {
-  padding: 10px;
-}
-
-.opening-hours,
-.contact-info,
-.location-info {
-  margin-right: 15px;
-}
-
-.appointment-button {
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-.separator {
-  height: 1px;
-  background-color: #e0e0e0;
-  margin: 5px 0;
-}
-
-
-nav ul {
-  list-style-type: none;
-  padding: 0;
+.top-bar {
   display: flex;
-  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
 }
 
-nav a {
+.logo h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.contact-info p {
+  margin: 0;
+  font-size: 14px;
+  text-align: right;
+}
+
+.main-nav {
+  background-color: #ff6600;
+  padding: 10px 0;
+}
+
+.main-nav ul {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.main-nav ul li {
+  margin: 0 15px;
+}
+
+.main-nav ul li a {
+  color: #fff;
   text-decoration: none;
-  color: white;
-}
-
-input[type="search"] {
-  padding: 5px;
   font-size: 16px;
+  transition: color 0.3s ease;
 }
 
-.icon-chevron-down {
-  font-size: 12px;
-  margin-left: 5px;
+.main-nav ul li a:hover {
+  color: #333;
 }
