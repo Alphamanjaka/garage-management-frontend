@@ -1,10 +1,32 @@
-<div class="hero-section">
-  <div class="container">
-    <h1 class="hero-title">Bienvenue dans notre garage</h1>
-    <p class="hero-subtitle">Nous offrons les meilleurs services pour votre véhicule.</p>
-    <a href="#services" class="btn btn-primary">Voir nos services</a>
-  </div>
-</div>
+<swiper-container [pagination]="true" [navigation]="true" class="hero-swiper">
+  <swiper-slide>
+    <div class="hero-section">
+      <div class="container">
+        <h1 class="hero-title">Bienvenue dans notre garage</h1>
+        <p class="hero-subtitle">Nous offrons les meilleurs services pour votre véhicule.</p>
+        <a href="#services" class="btn btn-primary">Voir nos services</a>
+      </div>
+    </div>
+  </swiper-slide>
+  <swiper-slide>
+    <div class="hero-section">
+      <div class="container">
+        <h1 class="hero-title">Entretien de qualité</h1>
+        <p class="hero-subtitle">Prenez soin de votre voiture avec nos services d'entretien.</p>
+        <a href="#services" class="btn btn-primary">Voir nos services</a>
+      </div>
+    </div>
+  </swiper-slide>
+  <swiper-slide>
+    <div class="hero-section">
+      <div class="container">
+        <h1 class="hero-title">Diagnostic précis</h1>
+        <p class="hero-subtitle">Identifiez et résolvez les problèmes rapidement.</p>
+        <a href="#services" class="btn btn-primary">Voir nos services</a>
+      </div>
+    </div>
+  </swiper-slide>
+</swiper-container>
 
 <section id="services" class="services-section">
   <div class="container">
