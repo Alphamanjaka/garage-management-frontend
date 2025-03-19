@@ -3,11 +3,12 @@ import { RouterOutlet } from '@angular/router';
 // import function to register Swiper custom elements
 import { register } from 'swiper/element/bundle';
 import { HeaderComponent } from "./components/header/header.component";
+import { FooterComponent } from "./components/footer/footer.component";
 // register Swiper custom elements
 register();
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
