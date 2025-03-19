@@ -1,22 +1,49 @@
-<app-header></app-header>
-<div class="navigation pb-2">
-    <nav class="navbar navbar-expand-lg supra" aria-label="Supra-navigation - Only left navbar example">
-        <div class="container">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Accueil</a></li>
-                <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Nos services</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Nos voitures</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Promotion</a></li>
-            </ul>
-            <div class="">
-                <li></li>
-            </div>
-        </div>
-
-    </nav>
+<div class="hero-section">
+  <div class="container">
+    <h1 class="hero-title">Bienvenue dans notre garage</h1>
+    <p class="hero-subtitle">Nous offrons les meilleurs services pour votre véhicule.</p>
+    <a href="#services" class="btn btn-primary">Voir nos services</a>
+  </div>
 </div>
-<div>
+<swiper-container>
+  <swiper-slide>Slide 1</swiper-slide>
+  <swiper-slide>Slide 2</swiper-slide>
+  <swiper-slide>Slide 3</swiper-slide>
+</swiper-container>
 
-</div>
-<app-service-list></app-service-list>
-<app-footer></app-footer>
+<section id="services" class="services-section">
+  <div class="container">
+    <h2>Nos Services</h2>
+    <div class="service-cards">
+      <div class="service-card">
+        <h3>Réparation</h3>
+        <p>Des réparations rapides et fiables pour tous types de véhicules.</p>
+      </div>
+      <div class="service-card">
+        <h3>Entretien</h3>
+        <p>Un entretien régulier pour garantir la longévité de votre voiture.</p>
+      </div>
+      <div class="service-card">
+        <h3>Diagnostic</h3>
+        <p>Des diagnostics précis pour identifier et résoudre les problèmes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about-section">
+  <div class="container">
+    <h2>À propos de nous</h2>
+    <p>
+      Nous sommes un garage de confiance avec des années d'expérience dans
+      l'entretien et la réparation de véhicules. Notre équipe est composée de
+      professionnels qualifiés et passionnés.
+    </p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p>&copy; 2025 Garage Management. Tous droits réservés.</p>
+  </div>
+</footer>
