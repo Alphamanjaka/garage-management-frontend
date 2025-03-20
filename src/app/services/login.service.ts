@@ -5,6 +5,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Login } from '../models/Login';
 import { Observable, catchError, of, tap } from 'rxjs';
 import { Token } from '../models/Token';
+import { jwtDecode } from 'jwt-decode';
+import { log } from 'console';
 
 @Injectable({
   providedIn: 'root'
@@ -22,34 +24,15 @@ export class LoginService {
     const url = this.apiUrl + "/login";
     return this.httpClient.post<Token>(url, user).pipe(
       tap((response) => {
-        console.log("bien");
-        
-        // localStorage.setItem('token', response.token);
-        // localStorage.setItem('identifiant', response.identifiant);
-        // localStorage.setItem('role', response.role);
+        const decodedToken = this.decodeToken(response.token);
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('identifiant', response.identifiant);
+        localStorage.setItem('role', response.role);
       }),
       catchError((error) => this.handleError(error, [],1))
     );
   }
 
-//   loginFunction(login: { username: string, password: string }) {
-//     return this.httpClient.post<{ token: string }>(`${this.apiUrl}/login`, login)
-//         .pipe(
-//             catchError(error => {
-//             console.error('Erreur de connexion :', error);
-//             alert('Échec de l’authentification. Vérifiez vos identifiants.');
-//             return throwError(() => error);
-//             })
-//         )
-//         .subscribe({
-//             next: res => {
-//               localStorage.setItem('token', res.token);
-//               const userRole = this.getRole();
-//               this.redirectUser(userRole);
-//             },
-//             error: () => console.log("Erreur déjà gérée dans catchError")
-//           });
-// }
 
   private handleError(error: HttpErrorResponse, errorValue: any, route: number) {
     if (error.error instanceof ErrorEvent) {
@@ -73,5 +56,20 @@ export class LoginService {
     }
 
     return of(errorValue);
+  }
+
+  // Fonction pour récupérer et décoder le token JWT
+  decodeToken(token: string) {
+    try {
+      const decodedToken = jwtDecode(token);
+      return decodedToken; // Retourne les données décodées du token
+    } catch (error) {
+      console.error('Erreur de décodage du token', error);
+      return null!;
+    }
+  }
+
+  seDeconnecter() {
+    localStorage.clear();
   }
 }
