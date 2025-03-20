@@ -22,7 +22,7 @@ export class LoginService {
     const url = this.apiUrl + "/login";
     return this.httpClient.post<Token>(url, user).pipe(
       tap((response) => {
-        console.log("bien");
+        console.log('resp',response);
         
         // localStorage.setItem('token', response.token);
         // localStorage.setItem('identifiant', response.identifiant);
