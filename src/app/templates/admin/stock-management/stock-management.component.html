@@ -1,8 +1,12 @@
 <div class="container">
     <h2>Recherche de Pièces</h2>
-  
+  <!-- Bouton pour ouvrir la fenêtre modale -->
+    <!-- <button class="btn-add-piece" (click)="openModal()">+ Ajouter une pièce</button> -->
+    <button type="button" class="btn btn-primary m-4 " data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Ajouter une nouvelle pièce
+    </button>
+      
     <input type="text" [(ngModel)]="searchTerm" placeholder="Rechercher une pièce..." class="search-input"/>
-  
     <table class="piece-table">
       <thead>
         <tr>
@@ -20,4 +24,42 @@
       </tbody>
     </table>
   </div>
+
+  <!-- Fenêtre modale -->
+<div class="modal-overlay" *ngIf="showModal">
+    <div class="modal">
+      <h3>Ajouter une nouvelle pièce</h3>
+      
+      <input type="text" [(ngModel)]="newPiece.name" placeholder="Nom de la pièce" class="input-field"/>
+      <input type="number" [(ngModel)]="newPiece.price" placeholder="Prix (€)" class="input-field"/>
+      <input type="text" [(ngModel)]="newPiece.ref" placeholder="Référence" class="input-field"/>
+  
+      <div class="modal-buttons">
+        <button (click)="addPiece()" class="btn-save">Ajouter</button>
+        <button (click)="closeModal()" class="btn-cancel">Annuler</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title h5" id="staticBackdropLabel">Modal title</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Close"><span class="visually-hidden">Close</span></button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Understood</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+  </div>
+  
   

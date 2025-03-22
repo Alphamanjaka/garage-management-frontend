@@ -1,27 +1,102 @@
 .container {
-  max-width: 600px;
-  margin: auto;
-  text-align: center;
-}
-
-.search-input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.piece-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.piece-table th, .piece-table td {
-  border: 1px solid #ddd;
-  padding: 10px;
-}
-
-.piece-table th {
-  background-color: #f4f4f4;
-}
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .btn-add-piece {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  .btn-add-piece:hover {
+    background-color: #0056b3;
+  }
+  
+  .piece-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .piece-table th, .piece-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+  }
+  
+  .piece-table th {
+    background-color: #f4f4f4;
+  }
+  
+  /* Styles pour la fenêtre modale */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .modal-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .btn-save {
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-save:hover {
+    background-color: #218838;
+  }
+  
+  .btn-cancel {
+    padding: 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-cancel:hover {
+    background-color: #c82333;
+  }
+  
