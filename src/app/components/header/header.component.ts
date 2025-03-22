@@ -5,29 +5,29 @@ import { UserRole } from '../../models/UserRole';
 
 @Component({
   selector: 'app-header',
-  imports: [CommonModule, FormsModule, NgIf],
+  imports: [CommonModule, FormsModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
   searchQuery: any;
-  userRole : string ="";
-  UserRole = UserRole;
+  // userRole : string ="";
+  // UserRole = UserRole;
 
-  constructor(){
-    this.userRole = "";
+  // constructor(){
+  //   this.userRole = "";
 
-    if (typeof window !== 'undefined' && window.localStorage) {
+  //   if (typeof window !== 'undefined' && window.localStorage) {
       
-      let role = localStorage.getItem("role");
+  //     let role = localStorage.getItem("role");
 
-      if (role !== null && role !== "" && role !== undefined) {
-        console.log("ss",role);
+  //     if (role !== null && role !== "" && role !== undefined) {
+  //       console.log("ss",role);
         
-        this.userRole = role;
-      }
-    }
-  }
+  //       this.userRole = role;
+  //     }
+  //   }
+  // }
 
   toggleMore() {
 
