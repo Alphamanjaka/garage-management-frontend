@@ -6,7 +6,7 @@ import { SidebareMenus } from '../../../models/SidebareMenus';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [RouterModule, CommonModule, LeftSidebarComponent],
+  imports: [RouterModule, CommonModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })

@@ -1,0 +1,23 @@
+<div class="container">
+    <h2>Recherche de Pièces</h2>
+  
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Rechercher une pièce..." class="search-input"/>
+  
+    <table class="piece-table">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Prix (€)</th>
+          <th>Référence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let piece of filteredPieces">
+          <td>{{ piece.name }}</td>
+          <td>{{ piece.price }}</td>
+          <td>{{ piece.ref }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

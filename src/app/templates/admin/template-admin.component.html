@@ -1,8 +1,9 @@
-<!-- <app-left-sidebar
+<app-left-sidebar
+  [itemsMenu]="items"
   [isLeftSidebarCollapsed]="isLeftSidebarCollapsed()"
   (changeIsLeftSidebarCollapsed)="changeIsLeftSidebarCollapsed($event)"
-/> -->
+/>
 <div class="main-component" [ngClass]="{'collapsed': isLeftSidebarCollapsed()}">
-    <h1>Contenu principal</h1>
+  <router-outlet></router-outlet>
 </div>
 

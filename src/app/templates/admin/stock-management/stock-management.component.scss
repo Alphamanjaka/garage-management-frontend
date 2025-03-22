@@ -1,0 +1,27 @@
+.container {
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.piece-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.piece-table th, .piece-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.piece-table th {
+  background-color: #f4f4f4;
+}

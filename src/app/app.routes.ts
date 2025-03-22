@@ -6,8 +6,9 @@ import { TemplateEmployeComponent } from './templates/employe/template-employe.c
 import { ServiceListComponent } from './components/service-list/service-list.component';
 import { TemplateClientComponent } from './templates/client/template-client.component';
 import { DashboardComponent } from './templates/admin/dashboard/dashboard.component';
-import { TemplateAdminComponent } from './templates/admin/template-admin/template-admin.component';
+import { TemplateAdminComponent } from './templates/admin/template-admin.component';
 import { EmployeManagementComponent } from './templates/admin/employe-management/employe-management.component';
+import { StockManagementComponent } from './templates/admin/stock-management/stock-management.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -29,17 +30,12 @@ export const routes: Routes = [
         ],
     },
     {
-        path: 'admin', component: DashboardComponent,
+        path: 'admin', component: TemplateAdminComponent,
         children: [
-            {
-                path: '', component: OfferListComponent
-            },
-            {
-                path: 'employee-mgmt', component: EmployeManagementComponent
-            },
-            {
-                path: 'offers', component: OfferListComponent
-            }
+            { path: '', component: DashboardComponent },
+            { path: 'employee-mgmt', component: EmployeManagementComponent },
+            { path: 'stock-mgmt', component: StockManagementComponent },
+            { path: 'dashboard', component: DashboardComponent }
         ],
     },
     { path: 'employe', component: TemplateEmployeComponent, }
