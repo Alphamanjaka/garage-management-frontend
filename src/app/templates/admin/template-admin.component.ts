@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, input, output, signal } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { LeftSidebarComponent } from '../../shared/left-sidebar/left-sidebar.component';
 import { SidebareMenus } from '../../models/SidebareMenus';
 
@@ -16,7 +16,7 @@ export class TemplateAdminComponent {
   sidebarWidth = signal<string>('250px'); // Largeur normale
   items: any ;
 
-  constructor(){
+  constructor(private router : Router){
     this.items = SidebareMenus.ADMIN;
   }
   
@@ -38,5 +38,10 @@ export class TemplateAdminComponent {
 
   changeIsLeftSidebarCollapsed(isLeftSidebarCollapsed: boolean): void {
     this.isLeftSidebarCollapsed.set(isLeftSidebarCollapsed);
+  }
+
+  seDeconnecter() {
+    this.router.navigate(["/login/admin"])
+    localStorage.clear();
   }
 }

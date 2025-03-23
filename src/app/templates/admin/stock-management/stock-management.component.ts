@@ -1,41 +1,44 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { StockService } from '../../../services/stock.service';
+import { Piece } from '../../../models/Piece';
 
 @Component({
   selector: 'app-stock-management',
   imports: [FormsModule, NgFor, NgIf],
+  standalone: true,
   templateUrl: './stock-management.component.html',
   styleUrl: './stock-management.component.scss'
 })
 export class StockManagementComponent {
   searchTerm: string = '';
-
   newPiece = { name: '', price: 0, ref: '' };
   showModal: boolean = false;
+  pieces : Piece [] ;
 
-  pieces = [
-    { name: 'Vis M8', price: 2.5, ref: 'VIS-M8' },
-    { name: 'Ecrou M10', price: 3.0, ref: 'ECR-M10' },
-    { name: 'Plaque acier', price: 12.0, ref: 'PLQ-ACIER' },
-    { name: 'Ressort', price: 5.5, ref: 'RESS-01' }
-  ];
+  constructor(private stockService: StockService){
+    this.pieces = [];
+  }
 
-  get filteredPieces() {
-    return this.pieces.filter(piece =>
-      piece.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      piece.ref.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      piece.price.toString().includes(this.searchTerm)
+
+  searchPiece() {
+    this.stockService.searchPiece(this.searchTerm).subscribe(
+      (response) => {
+        if (response.length === 0 || this.searchTerm === '') {
+        } else this.pieces = response;
+      },
+      (error) => { }
     );
   }
 
   addPiece() {
-    if (this.newPiece.name && this.newPiece.price > 0 && this.newPiece.ref) {
-      this.pieces.push({ ...this.newPiece });
-      this.newPiece = { name: '', price: 0, ref: '' };
-    } else {
-      alert('Veuillez remplir tous les champs avec des valeurs valides.');
-    }
+    this.stockService.addPiece(this.newPiece).subscribe(
+      (response) => {
+        this.newPiece =  new Piece();
+      },
+      (error) => { }
+    );
   }
 
   openModal() {
@@ -45,5 +48,11 @@ export class StockManagementComponent {
   closeModal() {
     this.showModal = false;
     this.newPiece = { name: '', price: 0, ref: '' }; // Réinitialiser le formulaire
+  }
+
+  isFormValid(): boolean {
+    return this.newPiece.name.trim() !== '' && 
+           this.newPiece.price !== null && 
+           this.newPiece.ref.trim() !== '';
   }
 }

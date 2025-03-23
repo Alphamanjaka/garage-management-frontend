@@ -4,6 +4,17 @@
   (changeIsLeftSidebarCollapsed)="changeIsLeftSidebarCollapsed($event)"
 />
 <div class="main-component" [ngClass]="{'collapsed': isLeftSidebarCollapsed()}">
-  <router-outlet></router-outlet>
+  <div class="ci">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+ 
+      <div class="d-flex justify-content-end w-100">
+        <div class="p-2 bd-highlight"></div>
+        <div class="p-2 bd-highlight">
+          <a (click)="this.seDeconnecter()" style="cursor: pointer;">Se déconnecter</a> 
+        </div>
+      </div>
+    </nav>
+    <router-outlet></router-outlet>
+  </div>
 </div>
 
