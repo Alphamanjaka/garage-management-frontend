@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { ServiceService } from '../../services/service.service';
 import { log } from 'console';
 import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-service-list',

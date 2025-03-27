@@ -1,7 +1,10 @@
+$light-orange: #FFFAF2;
+$light-gray: #f9f9f9;
+
 .services-container {
   padding: 20px;
   /* background-color: #FFFBF0; */
-  background-color: #F5F2FF;
+  // background-color: #F5F2FF;
 
 }
 
@@ -19,7 +22,7 @@
   border-radius: 8px;
   padding: 20px;
   margin: 10px 0;
-  
+  background-color: $light-gray;
   /* animation */
   /* width: 300px; */
   position: relative;

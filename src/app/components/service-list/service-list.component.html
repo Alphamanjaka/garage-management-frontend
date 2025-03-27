@@ -1,39 +1,40 @@
 <div class="services-container">
   <div class="container">
     <div class="row">
-      <div class="d-flex justify-content-between">
-        <div>
-          <h2>Nos services :</h2>
-        </div>
-        <div>
-          <input type="search" placeholder="Rechercher" [(ngModel)]="this.searchTerm" (ngModelChange)="this.search()">
-        </div>
+      <div class="d-flex justify-content-between align-items-center p-2">
+          <div>
+            <h2>Nos services :</h2>
+          </div>
+          <div>
+            <input style="width: 300px;" type="search" placeholder="Rechercher" [(ngModel)]="this.searchTerm" (ngModelChange)="this.search()">
+          </div>
+          <div>
+            <button [disabled]="this.selectedOptions.length===0" class="btn btn-primary btn-sm" > Prendre RDV </button>
+          </div>
       </div>
     <hr/>
     </div>
     <div class="row">
-      <div class="col-4" *ngFor="let service of services">
-        <div class="card">
-          <div class="card-header">
-            <!-- <h5 class="card-title">
-            </h5> -->
-            <label>
-              {{ service.name }}
-              <input
-                type="radio"
-                (click)="toggleSelection(service)"
-                [checked]="isRadioSelected(service)"
-                style="appearance: radio;"
-              />
-            </label>
-          </div>
-          <div class="card-body">
-            <div class="card-overlay">
-              <button class="card-btn">Prendre RDV</button>
+        <div class="col-4" style="width: 30%;" *ngFor="let service of services">
+          <div class="card">
+            <div class="card-header">
+              <div class="d-flex justify-content-between">
+                <div class="p-2">{{ service.name }}</div>
+                <div class="p-2"><input
+                  type="radio"
+                  (click)="toggleSelection(service)"
+                  [checked]="isRadioSelected(service)"
+                  style="appearance: radio;"
+                /></div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-overlay">
+                A partir de 5000 Ar
+              </div>
             </div>
           </div>
         </div>
-      </div>
     </div>
   </div>
 </div>

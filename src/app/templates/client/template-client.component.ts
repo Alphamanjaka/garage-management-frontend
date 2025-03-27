@@ -5,7 +5,7 @@ import { ServiceListComponent } from '../../components/service-list/service-list
 
 @Component({
   selector: 'app-template-client',
-  imports: [FooterComponent, ServiceListComponent],
+  imports: [ServiceListComponent, HeaderComponent],
   templateUrl: './template-client.component.html',
   styleUrl: './template-client.component.scss'
 })
