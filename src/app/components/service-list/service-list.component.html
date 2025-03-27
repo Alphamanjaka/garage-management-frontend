@@ -9,7 +9,8 @@
             <input style="width: 300px;" type="search" placeholder="Rechercher" [(ngModel)]="this.searchTerm" (ngModelChange)="this.search()">
           </div>
           <div>
-            <button [disabled]="this.selectedOptions.length===0" class="btn btn-primary btn-sm" > Prendre RDV </button>
+            <button [disabled]="this.selectedOptions.length===0" class="btn btn-primary btn-sm" 
+             data-bs-toggle="modal" data-bs-target="#staticBackdrop" > Prendre RDV </button>
           </div>
       </div>
     <hr/>
@@ -29,7 +30,7 @@
               </div>
             </div>
             <div class="card-body">
-              <div class="card-overlay">
+              <div class="card-overlay align-items-center mb-3">
                 A partir de 5000 Ar
               </div>
             </div>
@@ -38,3 +39,50 @@
     </div>
   </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Remplissez le formulaire</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex input-group mb-2 justify-content-between">
+          <div class="p-2">
+            <label for="car-mark">Marque de la voiture</label>
+          </div>
+          <div class="p-2">
+            <input id="car-mark" [(ngModel)]="this.carModel.mark" type="text" class="form-control" 
+            placeholder="Mini-cooper" aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+        </div>
+        <div class="d-flex input-group mb-2 justify-content-between">
+          <div class="p-2">
+            <label for="car-model">Modèle de la voiture</label>
+          </div>
+          <div class="p-2">
+            <input id="car-model" [(ngModel)]="this.carModel.model" type="text" class="form-control" 
+            placeholder="Modèle" aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+        </div>
+        <div class="d-flex input-group mb-2 justify-content-between">
+          <div class="p-2">
+            <label for="date-rdv" >Date pour le Rdv</label>
+          </div>
+          <div class="p-2">
+            <input id="date-rdv" [min]="minDate | date:'yyyy-MM-dd'" [(ngModel)]="this.appointment.expectedDate" type="date" 
+            class="form-control" aria-describedby="basic-addon1">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+        <button [disabled]="!isFormValid()" (click)="this.takeAppointment()" type="button" class="btn btn-primary">Valider</button>
+      </div>
+    </div>
+  </div>
+</div>
+

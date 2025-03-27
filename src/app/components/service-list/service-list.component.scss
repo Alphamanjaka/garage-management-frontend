@@ -59,3 +59,11 @@ $light-gray: #f9f9f9;
 .card:hover .card-overlay {
   bottom: 0; /* L'overlay se glisse vers le bas */
 }
+
+.form-control {
+  width: 260px;        /* Largeur fluide */
+  max-width: 500px;   /* Largeur maximale */
+  height: auto;       /* Hauteur automatique */
+  min-height: 45px;   /* Hauteur minimale */
+  padding: 10px 15px; /* Padding top/bottom + left/right */
+}
