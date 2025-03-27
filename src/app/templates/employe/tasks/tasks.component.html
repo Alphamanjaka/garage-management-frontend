@@ -1,0 +1,22 @@
+<div class="card-header  text-body bg-body  active ">
+    <ul class="nav nav-tabs card-header-tabs ">
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['unaffected-task']" routerLinkActive="active">
+                Tâches inaffectées
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['current-task']" routerLinkActive="active">
+                Tâches encours
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['finished-task']" routerLinkActive="active">
+                Tâches terminées
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="card">
+  <router-outlet></router-outlet>
+</div>
