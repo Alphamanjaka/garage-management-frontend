@@ -93,17 +93,20 @@ export class ServiceListComponent {
 
     this.appointmentService.addAppointment(this.appointment)
     .subscribe(
-      (response)=>{
-        this.showToast("","Demande effectuée")
+      (response) => {
+        this.showToast("", "Demande effectuée");
+        this.services = [];
+        this.selectedOptions = [];
+        this.searchTerm = "";
       },
       (error)=>{},
     )
   }
 
-
   showToast(title: string, message: string) {
     this.toastService.success(title, message);
   }
+
   isFormValid(): boolean {
     return this.carModel.model.trim() !== '' &&
       this.carModel.model !== null &&
