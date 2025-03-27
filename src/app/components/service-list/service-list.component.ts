@@ -8,10 +8,12 @@ import { CarModel } from '../../models/CarModel';
 import { Appointment } from '../../models/Appointment';
 import { AppointmentService } from '../../services/appointment.service';
 import { response } from 'express';
+import { ToastService } from '../../services/toast.service';
+import { ToastComponent } from '../../shared/toast/toast.component';
 
 @Component({
   selector: 'app-service-list',
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,ToastComponent],
   templateUrl: './service-list.component.html',
   styleUrl: './service-list.component.scss',
   providers: [DatePipe]
@@ -28,7 +30,8 @@ export class ServiceListComponent {
   constructor(
     private serviceService: ServiceService,
     private appointmentService: AppointmentService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private toastService: ToastService,
   ) {
     this.carModel = new CarModel();
     this.appointment = new Appointment();
@@ -80,10 +83,7 @@ export class ServiceListComponent {
 
   takeAppointment(){
     let id = localStorage.getItem("identifiant") ?? '';
-    // let appointmnt = new Appointment(id,
-    //   [...this.selectedOptions],
-    //   this.preferedDate ,
-    //   { ...this.carModel })
+
     if(id !== "" && id !== undefined && id !== null){
       this.appointment.clientID = id;
     }
@@ -91,16 +91,19 @@ export class ServiceListComponent {
     this.appointment.carInfo = this.carModel ;
     this.appointment.serviceList = this.selectedOptions ;
 
-    console.log(this.appointment);
-    
-
     this.appointmentService.addAppointment(this.appointment)
     .subscribe(
-      (response)=>{},
+      (response)=>{
+        this.showToast("","Demande effectuée")
+      },
       (error)=>{},
     )
   }
 
+
+  showToast(title: string, message: string) {
+    this.toastService.success(title, message);
+  }
   isFormValid(): boolean {
     return this.carModel.model.trim() !== '' &&
       this.carModel.model !== null &&
@@ -109,4 +112,6 @@ export class ServiceListComponent {
       this.appointment.expectedDate !== null &&
       this.appointment.expectedDate.trim() !== "";
   }
+
+
 }

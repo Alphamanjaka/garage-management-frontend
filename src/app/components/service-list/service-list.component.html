@@ -80,9 +80,10 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-        <button [disabled]="!isFormValid()" (click)="this.takeAppointment()" type="button" class="btn btn-primary">Valider</button>
+        <button [disabled]="!isFormValid()" data-bs-dismiss="modal" (click)="this.takeAppointment()" type="button" class="btn btn-primary">Valider</button>
       </div>
     </div>
   </div>
 </div>
 
+<app-toast></app-toast>
