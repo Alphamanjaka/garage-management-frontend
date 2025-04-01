@@ -6,7 +6,6 @@ import { Login } from '../models/Login';
 import { Observable, catchError, of, tap } from 'rxjs';
 import { Token } from '../models/Token';
 import { jwtDecode } from 'jwt-decode';
-import { log } from 'console';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +16,8 @@ export class LoginService {
 
 
   private apiUrl = environment.apiUrl;
-  private httpClient = inject(HttpClient); 
-  
+  private httpClient = inject(HttpClient);
+
 
   login(user: Login): Observable<Token> {
     const url = this.apiUrl + "/login";
@@ -73,3 +72,4 @@ export class LoginService {
     localStorage.clear();
   }
 }
+

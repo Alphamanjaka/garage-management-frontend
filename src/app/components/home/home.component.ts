@@ -1,10 +1,12 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
+import { FooterComponent } from "../footer/footer.component";
+import { BannerComponent } from "../banner/banner.component";
+import { HeaderComponent } from "../header/header.component";
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [FooterComponent, BannerComponent, HeaderComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA] // add this line to support Angular Material and Swiper custom elements
 
 })
 
