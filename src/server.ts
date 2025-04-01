@@ -1,29 +1,35 @@
-import 'zone.js/node';
-import express from 'express';
-import { join } from 'path';
-import { existsSync } from 'fs';
-import { ngExpressEngine } from '@angular/platform-server';
+import { AngularAppEngine, createRequestHandler } from '@angular/ssr';
+import { getContext } from '@netlify/angular-runtime/context.mjs';
 
-import { AppServerModule } from './src/main.server'; // Assure-toi que ce chemin est correct
+const angularAppEngine = new AngularAppEngine();
 
-const app = express();
-const distFolder = join(process.cwd(), 'dist/m1p12mean-andrea-alpha/browser');
-const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index.html';
+/**
+ * Fonction qui définit les paramètres de pré-rendu
+ */
+export function getPrerenderParams() {
+  return {
+    '/login/:role': ['admin', 'user', 'guest'] // Liste des rôles acceptés pour la pré-rendition
+  };
+}
 
-app.engine('html', ngExpressEngine({ bootstrap: AppServerModule }));
-app.set('view engine', 'html');
-app.set('views', distFolder);
+/**
+ * Gestionnaire des requêtes Netlify
+ */
+export async function netlifyAppEngineHandler(request: Request): Promise<Response> {
+  const context = getContext();
 
-// Servir les fichiers statiques
-app.use(express.static(distFolder, { maxAge: '1y' }));
+  // Exemple d'API personnalisée (optionnel)
+  const pathname = new URL(request.url).pathname;
+  if (pathname === '/api/hello') {
+    return Response.json({ message: 'Hello depuis Netlify !' });
+  }
 
-// Gérer toutes les routes Angular
-app.get('*', (req, res) => {
-  res.render(indexHtml, { req });
-});
+  // Gestion des requêtes Angular SSR
+  const result = await angularAppEngine.handle(request, context);
+  return result || new Response('Not found', { status: 404 });
+}
 
-// Démarrer le serveur
-const port = process.env.PORT || 4000;
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+/**
+ * Gestionnaire de requêtes pour Netlify et Angular CLI
+ */
+export const reqHandler = createRequestHandler(netlifyAppEngineHandler);

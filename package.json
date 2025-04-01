@@ -21,7 +21,7 @@
     "@angular/platform-browser-dynamic": "^19.1.0",
     "@angular/platform-server": "^19.1.0",
     "@angular/router": "^19.1.0",
-    "@angular/ssr": "^19.1.8",
+    "@angular/ssr": "^19.2.5",
     "@fortawesome/fontawesome-free": "^6.7.2",
     "@netlify/angular-runtime": "^2.3.1",
     "bootstrap": "^5.3.3",
@@ -29,10 +29,11 @@
     "g": "^2.0.1",
     "jwt-decode": "^4.0.0",
     "m1p12mean-andrea-alpha": "file:",
-    "netlify-cli": "^19.1.4",
+    "netlify-cli": "^16.4.2",
     "rxjs": "~7.8.0",
     "swiper": "^11.2.5",
     "tslib": "^2.3.0",
+    "update": "^0.4.2",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
