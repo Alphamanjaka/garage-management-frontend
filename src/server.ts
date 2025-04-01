@@ -7,7 +7,7 @@ import { ngExpressEngine } from '@angular/platform-server';
 import { AppServerModule } from './src/main.server'; // Assure-toi que ce chemin est correct
 
 const app = express();
-const distFolder = join(process.cwd(), 'dist/my-app/browser');
+const distFolder = join(process.cwd(), 'dist/m1p12mean-andrea-alpha/browser');
 const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index.html';
 
 app.engine('html', ngExpressEngine({ bootstrap: AppServerModule }));
