@@ -8,7 +8,7 @@
           <th scope="col" width="50">#</th>
           <th scope="col">Voiture (Marque,Modèle)</th>
           <th scope="col" class="text-center">Services</th>
-          <th scope="col" class="text-end">Date</th>
+          <th scope="col" class="text-center">Date préferée (client)</th>
           <th scope="col" width="120" class="text-end">Actions</th>
         </tr>
       </thead>
@@ -17,20 +17,24 @@
           <th scope="row">{{ i+1 }}</th>
           <td>
             <div class="fw-semibold">{{ task.carInfo.mark  }}, {{ task.carInfo.model  }}</div>
-            <div class="text-muted small"></div>
+            <div class="text-muted small">
+            </div>
           </td>
           <td class="text-center">
-            <span class="badge rounded-pill" 
+            <!-- <span class="badge rounded-pill" 
                   [ngClass]="{
                     'bg-warning': task.status === 'en_cours',
                     'bg-success': task.status === 'termine',
                     'bg-secondary': task.status === 'inaffecte'
                   }">
               {{ getStatusLabel(task.status) }}
-            </span>
+            </span> -->
+            <div class="text-start">
+              <li style="margin-left: 12px;" *ngFor="let service of task.serviceList"> {{service.name}}</li>
+            </div>
           </td>
           <td class="text-end">
-            <div>{{ task.dueDate | date:'dd/MM/yyyy' }}</div>
+            <div>{{ task.expectedDate | date:'dd/MM/yyyy' }}</div>
             <div class="small" [class.text-danger]="isOverdue(task.dueDate)">
               {{ getDueDateInfo(task.dueDate) }}
             </div>
