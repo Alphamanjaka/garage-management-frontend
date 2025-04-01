@@ -1,4 +1,4 @@
 [build]
   command = "ng build && ng run m1p12mean-Andrea-Alpha:server"
-  publish = "dist/m1p12mean-andrea-alpha/browser"
+  publish = "dist/m1p12mean-Andrea-Alpha/browser"
   functions = "netlify/functions"
