@@ -1,22 +1,30 @@
 <div class="card-header  text-body bg-body  active ">
     <ul class="nav nav-tabs card-header-tabs ">
         <li class="nav-item">
-            <a class="nav-link" [routerLink]="['unaffected-task']" routerLinkActive="active">
+            <a class="nav-link" (click)="this.openUnaffectedTask()" 
+            [class.bg-light]="!this.isUnaffectedTaskActive"
+            [class.active]="this.isUnaffectedTaskActive">
                 Tâches inaffectées
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" [routerLink]="['current-task']" routerLinkActive="active">
+            <a class="nav-link" (click)="this.openCurrentTask()" 
+            [class.bg-light]="!this.isCurrentTaskActive"
+            [class.active]="this.isCurrentTaskActive">
                 Tâches encours
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" [routerLink]="['finished-task']" routerLinkActive="active">
+            <a class="nav-link" (click)="this.openFinishedTask()" 
+            [class.bg-light]="!this.isFinishedTaskActive"
+            [class.active]="this.isFinishedTaskActive">
                 Tâches terminées
             </a>
         </li>
     </ul>
 </div>
 <div class="card">
-  <router-outlet></router-outlet>
+  <app-unaffected-task *ngIf="this.isUnaffectedTaskActive" ></app-unaffected-task>
+  <app-current-task *ngIf="this.isCurrentTaskActive" ></app-current-task>
+  <app-finished-task *ngIf="this.isFinishedTaskActive" ></app-finished-task>
 </div>

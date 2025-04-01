@@ -1,1 +1,79 @@
-<p>unaffected-task works!</p>
+<div class="table-responsive">
+  <div *ngIf="isLoading" class="loading">Chargement en cours...</div>
+  
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+    <table class="table table-hover align-middle">
+      <thead class="table-light">
+        <tr>
+          <th scope="col" width="50">#</th>
+          <th scope="col">Voiture (Marque,Modèle)</th>
+          <th scope="col" class="text-center">Services</th>
+          <th scope="col" class="text-end">Date</th>
+          <th scope="col" width="120" class="text-end">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of tasks let i = index">
+          <th scope="row">{{ i+1 }}</th>
+          <td>
+            <div class="fw-semibold">{{ task.carInfo.mark  }}, {{ task.carInfo.model  }}</div>
+            <div class="text-muted small"></div>
+          </td>
+          <td class="text-center">
+            <span class="badge rounded-pill" 
+                  [ngClass]="{
+                    'bg-warning': task.status === 'en_cours',
+                    'bg-success': task.status === 'termine',
+                    'bg-secondary': task.status === 'inaffecte'
+                  }">
+              {{ getStatusLabel(task.status) }}
+            </span>
+          </td>
+          <td class="text-end">
+            <div>{{ task.dueDate | date:'dd/MM/yyyy' }}</div>
+            <div class="small" [class.text-danger]="isOverdue(task.dueDate)">
+              {{ getDueDateInfo(task.dueDate) }}
+            </div>
+          </td>
+          <td class="text-end">
+            <button class="btn btn-sm btn-outline-primary me-1" (click)="editTask(task)">
+              <i class="bi bi-pencil"></i>
+            </button>
+            <button class="btn btn-sm btn-outline-danger" (click)="deleteTask(task)">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="tasks.length === 0">
+          <td colspan="5" class="text-center text-muted py-4">
+            Aucune tâche trouvée
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="controls">
+      <div class="items-per-page">
+        <label for="itemsPerPage">Contenu par page:</label>
+        <select id="itemsPerPage" [ngModel]="itemsPerPage" (ngModelChange)="onItemsPerPageChange($event)">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="50">50</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="pagination-container" *ngIf="totalPages > 1">
+      <button (click)="onPageChange(1)" [disabled]="currentPage === 1">Première</button>
+      <button (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 1">Précédent</button>
+      
+      <button *ngFor="let page of pages" 
+              (click)="onPageChange(page)"
+              [class.active]="page === currentPage">
+        {{ page }}
+      </button>
+      
+      <button (click)="onPageChange(currentPage + 1)" [disabled]="currentPage === totalPages">Suivant</button>
+      <button (click)="onPageChange(totalPages)" [disabled]="currentPage === totalPages">Dernière</button>
+    </div>
+  </div>

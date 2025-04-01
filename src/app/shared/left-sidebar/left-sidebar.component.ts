@@ -15,9 +15,7 @@ export class LeftSidebarComponent {
   isLeftSidebarCollapsed = input.required<boolean>();
   changeIsLeftSidebarCollapsed = output<boolean>();
   itemsMenu = input.required<SidebarMenu[]>(); 
-  // @Input() role: UserRole = 'ADMIN'; // Par défaut ADMIN
 
-  // itemsMenu: SidebarMenu = UserMenu[this.role];
   toggleCollapse(): void {
     this.changeIsLeftSidebarCollapsed.emit(!this.isLeftSidebarCollapsed());
   }
@@ -25,8 +23,4 @@ export class LeftSidebarComponent {
   closeSidenav(): void {
     this.changeIsLeftSidebarCollapsed.emit(true);
   }
-
-  // ngOnChanges(): void {
-  //   this.itemsMenu = UserMenu[this.role]; // Mettre à jour si le rôle change dynamiquement
-  // }
 }
