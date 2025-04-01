@@ -29,11 +29,11 @@
     "g": "^2.0.1",
     "jwt-decode": "^4.0.0",
     "m1p12mean-andrea-alpha": "file:",
-    "netlify-cli": "^16.4.2",
+    "netlify-cli": "^19.1.4",
     "rxjs": "~7.8.0",
     "swiper": "^11.2.5",
     "tslib": "^2.3.0",
-    "update": "^0.4.2",
+    "update": "^0.7.4",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {

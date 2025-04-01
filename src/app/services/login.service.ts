@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/env';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Login } from '../models/Login';
 import { Observable, catchError, of, tap } from 'rxjs';
@@ -28,7 +28,7 @@ export class LoginService {
         localStorage.setItem('identifiant', response.identifiant);
         localStorage.setItem('role', response.role);
       }),
-      catchError((error) => this.handleError(error, [],1))
+      catchError((error) => this.handleError(error, [], 1))
     );
   }
 
