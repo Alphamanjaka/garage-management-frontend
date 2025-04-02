@@ -85,8 +85,8 @@ header {
 //   display: flex;
 // }
 
-// .nav-item {
-//   margin-right: 20px;
+.nav-item {
+  margin-right: 20px;
 
   a {
     text-decoration: none;
@@ -98,14 +98,14 @@ header {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-//     &:hover {
-//       text-decoration: underline;
-//       color: black;
-//       transition: color 0.3s ease;
+    &:hover {
+      text-decoration: underline;
+      color: black;
+      transition: color 0.3s ease;
 
-//     }
-//   }
-// }
+    }
+  }
+}
 
 // .dropdown-content {
 //   display: none;
