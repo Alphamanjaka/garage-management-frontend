@@ -14,14 +14,15 @@ export class AppointmentService {
   constructor(private http: HttpClient) { }
 
   addAppointment(appointment: Appointment): Observable<any> {
-    console.log(appointment);
-    
     return this.http.post(this.apiUrl, appointment);
   }
 
-  getPaginatedTask(page : number, limit: number): Observable<PaginatedResponse> {
-    
-    return this.http.get<PaginatedResponse>(`${this.apiUrl}/fetch?page=${page}&limit=${limit}`);
+  getPaginatedUnassignedTask(page : number, limit: number): Observable<PaginatedResponse> {
+    return this.http.get<PaginatedResponse>(`${this.apiUrl}/unassigned?page=${page}&limit=${limit}`);
+  }
+
+  updateAppointment(id: string, addAppointment: Appointment): Observable<any>{
+    return this.http.put(`${this.apiUrl}/${id}`,addAppointment);
   }
 
 }

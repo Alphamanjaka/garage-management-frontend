@@ -1,6 +1,8 @@
-<div class="table-responsive">
+<div class="table-responsive p-4">
   <div *ngIf="isLoading" class="loading">Chargement en cours...</div>
-  
+  <button class="btn btn-sm btn-outline-primary me-1 mb-2" >
+    <i class="fa-solid fa-rotate"></i>
+  </button>
   <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
     <table class="table table-hover align-middle">
       <thead class="table-light">
@@ -21,14 +23,6 @@
             </div>
           </td>
           <td class="text-center">
-            <!-- <span class="badge rounded-pill" 
-                  [ngClass]="{
-                    'bg-warning': task.status === 'en_cours',
-                    'bg-success': task.status === 'termine',
-                    'bg-secondary': task.status === 'inaffecte'
-                  }">
-              {{ getStatusLabel(task.status) }}
-            </span> -->
             <div class="text-start">
               <li style="margin-left: 12px;" *ngFor="let service of task.serviceList"> {{service.name}}</li>
             </div>
@@ -40,11 +34,9 @@
             </div>
           </td>
           <td class="text-end">
-            <button class="btn btn-sm btn-outline-primary me-1" (click)="editTask(task)">
-              <i class="bi bi-pencil"></i>
-            </button>
-            <button class="btn btn-sm btn-outline-danger" (click)="deleteTask(task)">
-              <i class="bi bi-trash"></i>
+            <button class="btn btn-sm btn-outline-primary me-1"
+            data-bs-toggle="modal" data-bs-target="#affectationModal" (click)="initModal(task)">
+              M'assigner
             </button>
           </td>
         </tr>
@@ -55,6 +47,8 @@
         </tr>
       </tbody>
     </table>
+  <app-toast></app-toast>
+  <div class="d-flex justify-content-between align-items-center">
     <div class="controls">
       <div class="items-per-page">
         <label for="itemsPerPage">Contenu par page:</label>
@@ -67,7 +61,7 @@
       </div>
     </div>
 
-    <div class="pagination-container" *ngIf="totalPages > 1">
+    <div class="pagination-container " *ngIf="totalPages > 1">
       <button (click)="onPageChange(1)" [disabled]="currentPage === 1">Première</button>
       <button (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 1">Précédent</button>
       
@@ -79,5 +73,38 @@
       
       <button (click)="onPageChange(currentPage + 1)" [disabled]="currentPage === totalPages">Suivant</button>
       <button (click)="onPageChange(totalPages)" [disabled]="currentPage === totalPages">Dernière</button>
+    </div>
+  </div>
+    
+</div>
+  <div class="modal fade" id="affectationModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Formulaire d'affectation</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex input-group mb-2 justify-content-between">
+            <div class="p-2">
+              <label for="date-debut-entretient" >Date de début d'entretient</label>
+            </div>
+            <div class="p-2">
+              <input id ="date-debut-entretient" type="datetime-local" [min]="minBeginningDate | date:'yyyy-MM-dd'"  [(ngModel)]="taskToAssign.serviceStartedAt"  class="input-field"/>
+            </div>
+          </div>
+          <div class="d-flex input-group mb-2 justify-content-between">
+            <div class="p-2">
+              <label for="date-fin-entretient" >Date estimée pour fin d'entretient</label>
+            </div>
+            <div class="p-2">
+              <input id="date-fin-entretient" type="datetime-local" [(ngModel)]="taskToAssign.serviceExpectedEndAt"  class="input-field"/>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="assignTask()">Confirmer</button>
+          </div>
+      </div>
     </div>
   </div>

@@ -3,14 +3,20 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppointmentService } from '../../../../services/appointment.service';
 import { log } from 'console';
+import { Service } from '../../../../models/Service';
+import { Appointment } from '../../../../models/Appointment';
+import { ToastService } from '../../../../services/toast.service';
+import { ToastComponent } from "../../../../shared/toast/toast.component";
 
 @Component({
   selector: 'app-unaffected-task',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ToastComponent],
   templateUrl: './unaffected-task.component.html',
   styleUrl: './unaffected-task.component.scss'
 })
 export class UnaffectedTaskComponent {
+
+
   tasks: any[] = [];
   currentPage = 1;
   itemsPerPage = 5;
@@ -19,9 +25,19 @@ export class UnaffectedTaskComponent {
   isLoading = false;
   errorMessage = '';
 
-  constructor(private appointmentService : AppointmentService){
-    this.getPaginatedTask();
+  taskToAssign: Appointment;
+  minBeginningDate = new Date();
+  esteemedFinishingDate =  "";
+  beginningDate = "";
+
+  constructor(private appointmentService : AppointmentService, private toastService: ToastService,){
+    this.taskToAssign = new Appointment();
   }
+
+  ngOnInit(): void{
+    this.getPaginatedUnassignedTask();
+  }
+
   getStatusLabel(arg0: any) {
 
   }
@@ -38,16 +54,32 @@ export class UnaffectedTaskComponent {
 
   }
 
-  getPaginatedTask(){
+  initModal(task: Appointment) {
+    this.taskToAssign = task;
+  }
+
+  assignTask() {
+    let idEmp = localStorage.getItem("identifiant") ?? '';
+    this.taskToAssign.employeeId = idEmp;
+    this.appointmentService.updateAppointment(this.taskToAssign._id,this.taskToAssign)
+    .subscribe(
+      (response)=>{
+        this.tasks = this.tasks.filter(item => item._id !== this.taskToAssign._id );
+        this.taskToAssign = new Appointment() ;
+        this.showSuccessToast()
+      },
+      (error)=>{}
+    )
+  }
+
+  getPaginatedUnassignedTask(){
     this.isLoading = true;
     this.errorMessage = '';
-    this.appointmentService.getPaginatedTask(this.currentPage, this.itemsPerPage)
+    this.appointmentService.getPaginatedUnassignedTask(this.currentPage, this.itemsPerPage)
     .subscribe({
       next: (response) => {
         this.tasks = response.items;
-        this.totalItems = response.totalItems;
-        console.log('tp',response);
-        
+        this.totalItems = response.totalItems;        
         this.totalPages = response.totalPages;
         this.isLoading = false;
       },
@@ -64,7 +96,7 @@ export class UnaffectedTaskComponent {
     if (newLimit !== this.itemsPerPage) {
       this.itemsPerPage = newLimit;
       this.currentPage = 1; // Reset to first page
-      this.getPaginatedTask();
+      this.getPaginatedUnassignedTask();
     }
   }
 
@@ -75,7 +107,11 @@ export class UnaffectedTaskComponent {
   onPageChange(page: number): void {
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
-      this.getPaginatedTask();
+      this.getPaginatedUnassignedTask();
     }
+  }
+
+  showSuccessToast() {
+    this.toastService.success("", "Tâche assignée à vous");
   }
 }
