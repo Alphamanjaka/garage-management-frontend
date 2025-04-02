@@ -1,0 +1,46 @@
+<div class="login-container">
+    <h1 class="site-name" (click)="home()">Garage</h1>
+    <div class="login-form">
+        <h2>Créez votre compte</h2>
+        <form >
+            <div class="form-group">
+                <label for="lastname">Nom</label>
+                <input type="text" id="lastname" name="lastname" placeholder="Entrez votre nom" [(ngModel)]="this.user.lastname" required>
+            </div>
+            <div class="form-group">
+                <label for="firstname">Prénom</label>
+                <input type="text" id="firstname" name="firstname" placeholder="Entrez votre prénom" [(ngModel)]="this.user.firstname" required>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="Entrez votre adresse E-mail" [(ngModel)]="this.user.email" required>
+            </div>
+            <div class="form-group">
+                <label for="username">Nom d'utilisateur</label>
+                <input type="text" id="username" name="username" placeholder="Entrez votre nom d'utilisateur" [(ngModel)]="this.user.username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" [(ngModel)]="this.user.password" required>
+            </div>
+            <div class="form-group">
+                <label for="secondepassword">Retapez le mot de passe</label>
+                <input type="password" id="secondepassword" name="secondepassword" placeholder="Entrez votre mot de passe" [(ngModel)]="this.secondePassword" required>
+            </div>
+            <div *ngIf="passwordDoNotMatch()" class="error-message">
+                Les mots de passe ne sont pas identique.
+            </div>
+            <button type="button" (click)="signIn()">S'inscrire</button>
+        </form>
+        <div class="loading-spinner" *ngIf="loading">
+            <div class="spinner"></div>
+            <p>Chargement en cours...</p>
+        </div>
+        <div *ngIf="inscriptionError" class="error-message">
+            {{errorMessage}}
+        </div>
+        <div class="register-link">
+            <p>Vous avez déjà un compte ? <a routerLink="/login/client" >Se connecter</a></p>
+        </div>
+    </div>
+</div>

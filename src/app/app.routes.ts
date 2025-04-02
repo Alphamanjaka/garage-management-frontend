@@ -13,12 +13,14 @@ import { UnaffectedTaskComponent } from './templates/employe/tasks/unaffected-ta
 import { CurrentTaskComponent } from './templates/employe/tasks/current-task/current-task.component';
 import { FinishedTaskComponent } from './templates/employe/tasks/finished-task/finished-task.component';
 import { TasksComponent } from './templates/employe/tasks/tasks.component';
+import { InscriptionComponent } from './components/inscription/inscription.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'offers', component: OfferListComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'login/:role', component: LoginComponent },
+    { path: 'signin', component: InscriptionComponent },
     // { path: 'unaffected-task', component: UnaffectedTaskComponent },
     // { path: 'current-task', component: CurrentTaskComponent },
     // { path: 'finished-task', component: FinishedTaskComponent },
