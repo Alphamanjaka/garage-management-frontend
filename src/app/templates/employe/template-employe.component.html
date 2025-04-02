@@ -1,1 +1,5 @@
-<p>template-employe works!</p>
+<app-left-sidebar [itemsMenu]="items" [isLeftSidebarCollapsed]="isLeftSidebarCollapsed()"
+  (changeIsLeftSidebarCollapsed)="changeIsLeftSidebarCollapsed($event)" />
+<div class="main-component" [ngClass]="{'collapsed': isLeftSidebarCollapsed()}">
+  <router-outlet></router-outlet>
+</div>
