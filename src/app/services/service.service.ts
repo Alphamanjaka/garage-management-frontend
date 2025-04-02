@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/env';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { Service } from '../models/Service';
 
 @Injectable({
@@ -12,7 +12,13 @@ export class ServiceService {
   constructor(private http: HttpClient) { }
 
   getServices(): Observable<any> {
-    return this.http.get(this.apiUrl);
+    return this.http.get(this.apiUrl)
+      .pipe(
+        catchError(error => {
+          console.error('Erreur API :', error);
+          return throwError(() => new Error('Erreur lors de la récupération des services'));
+        })
+      );;
   }
   addService(Service: any): Observable<any> {
     return this.http.post(this.apiUrl, Service);
