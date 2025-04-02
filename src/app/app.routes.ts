@@ -18,6 +18,7 @@ export const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'offers', component: OfferListComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: 'login/:role', component: LoginComponent },
     // { path: 'unaffected-task', component: UnaffectedTaskComponent },
     // { path: 'current-task', component: CurrentTaskComponent },
     // { path: 'finished-task', component: FinishedTaskComponent },
