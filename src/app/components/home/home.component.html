@@ -1,57 +1,15 @@
-<swiper-container [pagination]="true" [navigation]="true" class="hero-swiper" [loop]="true"
-  [autoplay]="{ delay: 5000 }">
-  <swiper-slide>
-    <div class="hero-section">
-      <div class="container">
-        <h1 class="hero-title">Bienvenue dans notre garage</h1>
-        <p class="hero-subtitle">Nous offrons les meilleurs services pour votre véhicule.</p>
-        <a href="#services" class="btn btn-primary">Voir nos services</a>
-      </div>
-    </div>
-  </swiper-slide>
-  <swiper-slide>
-    <div class="hero-section">
-      <div class="container">
-        <h1 class="hero-title">Entretien de qualité</h1>
-        <p class="hero-subtitle">Prenez soin de votre voiture avec nos services d'entretien.</p>
-        <a href="#services" class="btn btn-primary">Voir nos services</a>
-      </div>
-    </div>
-  </swiper-slide>
-  <swiper-slide>
-    <div class="hero-section">
-      <div class="container">
-        <h1 class="hero-title">Diagnostic précis</h1>
-        <p class="hero-subtitle">Identifiez et résolvez les problèmes rapidement.</p>
-        <a href="#services" class="btn btn-primary">Voir nos services</a>
-      </div>
-    </div>
-  </swiper-slide>
-</swiper-container>
-
+<app-header></app-header>
+<app-banner></app-banner>
 <section id="services" class="services-section">
   <div class="container">
     <div class="service-cards">
-      <div class="service-card">
-        <h3>Réparation</h3>
-        <p>Des réparations rapides et fiables pour tous types de véhicules.</p>
-      </div>
-      <div class="service-card">
-        <h3>Entretien</h3>
-        <p>Un entretien régulier pour garantir la longévité de votre voiture.</p>
-      </div>
-      <div class="service-card">
-        <h3>Diagnostic</h3>
-        <p>Des diagnostics précis pour identifier et résoudre les problèmes.</p>
-      </div>
-      <div class="service-card">
-        <h3>Peinture</h3>
-        <p>Des services de peinture de haute qualité pour redonner vie à votre véhicule.</p>
+      <div class="service-card" *ngFor="let item of servicesList">
+        <h3>{{item.name}}</h3>
+        <p>{{item.description}}</p>
       </div>
     </div>
   </div>
 </section>
-
 <section id="about" class="about-section">
   <div class="container">
     <h2>À propos de nous</h2>
@@ -62,3 +20,4 @@
     </p>
   </div>
 </section>
+<app-footer></app-footer>

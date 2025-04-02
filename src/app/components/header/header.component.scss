@@ -4,6 +4,7 @@ $light-gray: #f9f9f9;
 $white: #fff;
 $text-color: #666;
 $font-family: 'Arial', sans-serif;
+@use "sass:color";
 
 header {
   background-color: $secondary-color;
@@ -16,25 +17,65 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
+
+  .logo {
+    flex: 1;
+
+    h1 {
+      font-size: 24px;
+      margin: 0;
+    }
+  }
+
+  .contact-info {
+    flex: 2;
+    text-align: center;
+
+    p {
+      margin: 0;
+      font-size: 14px;
+    }
+  }
+
+  .auth-buttons {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
+    .btn {
+      background-color: $primary-color;
+      color: $white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: color.adjust($primary-color, $lightness: -10%);
+      }
+
+      &.btn-signup {
+        background-color: #28a745; // Vert pour "S'inscrire"
+      }
+
+      &.btn-login {
+        background-color: #007bff; // Bleu pour "Se connecter"
+      }
+    }
+  }
 }
 
-.logo h1 {
-  font-size: 24px;
-  margin: 0;
+.navbar {
+  background-color: $primary-color ;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 20px;
 }
-
-.contact-info p {
-  margin: 0;
-  font-size: 14px;
-  text-align: right;
-}
-// .navbar {
-//   background-color: $primary-color ;
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   padding: 10px 20px;
-// }
 
 // .nav-list {
 //   list-style: none;
@@ -47,10 +88,15 @@ header {
 // .nav-item {
 //   margin-right: 20px;
 
-//   a {
-//     text-decoration: none;
-//     color: white;
-//     font-weight: bold;
+  a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    cursor: pointer;
+    size-adjust: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 
 //     &:hover {
 //       text-decoration: underline;
@@ -81,12 +127,42 @@ header {
 //   }
 // }
 
-// .dropdown:hover .dropdown-content {
-//   display: block;
-// }
-
-.search-icon img {
-  width: 20px;
-  height: 20px;
+.dropdown:hover .dropdown-content {
+  display: block;
 }
+.search-icon {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espace entre l'icône et le champ de saisie */
 
+  input {
+    padding: 5px 10px;
+    border: none; /* Supprime la bordure */
+    border-bottom: 1px solid $light-gray; /* Ajoute une bordure inférieure discrète */
+    background-color: transparent; /* Fond transparent */
+    color: $white; /* Texte blanc pour se fondre dans le décor */
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      border-color: $primary-color; /* Change la couleur de la bordure inférieure au focus */
+    }
+
+    &::placeholder {
+      color: $light-gray; /* Couleur du placeholder */
+      opacity: 0.8;
+    }
+  }
+
+  i {
+    color: $white; /* Icône blanche pour se fondre dans le décor */
+    font-size: 16px;
+    cursor: pointer;
+    transition:   color 0.3s ease;
+
+    &:hover {
+      color: $primary-color; /* Change la couleur de l'icône au survol */
+    }
+  }
+}

@@ -1,12 +1,11 @@
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/env';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Login } from '../models/Login';
 import { Observable, catchError, of, tap } from 'rxjs';
 import { Token } from '../models/Token';
 import { jwtDecode } from 'jwt-decode';
-import { log } from 'console';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +16,8 @@ export class LoginService {
 
 
   private apiUrl = environment.apiUrl;
-  private httpClient = inject(HttpClient); 
-  
+  private httpClient = inject(HttpClient);
+
 
   login(user: Login): Observable<Token> {
     const url = this.apiUrl + "/login";
@@ -29,7 +28,7 @@ export class LoginService {
         localStorage.setItem('identifiant', response.identifiant);
         localStorage.setItem('role', response.role);
       }),
-      catchError((error) => this.handleError(error, [],1))
+      catchError((error) => this.handleError(error, [], 1))
     );
   }
 
@@ -73,3 +72,4 @@ export class LoginService {
     localStorage.clear();
   }
 }
+

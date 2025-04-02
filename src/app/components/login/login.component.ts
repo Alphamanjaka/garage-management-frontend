@@ -1,5 +1,5 @@
 import { Component, NgModule } from '@angular/core';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/env';
 import { Login } from '../../models/Login';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
@@ -10,8 +10,8 @@ import { FormsModule, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
-  imports: [NgIf,FormsModule],
-  standalone:true,
+  imports: [NgIf, FormsModule],
+  standalone: true,
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -29,23 +29,23 @@ export class LoginComponent {
     private route: ActivatedRoute
   ) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.login.role = this.route.snapshot.params['role'];
-        if(this.login.role=='client'){
-            this.login.username='client1';
-            this.login.password='client1';
-            this.etat=1;
-        }
-        if (this.login.role == 'admin') {
-            this.login.username = 'charles';
-            this.login.password = '123456';
-            this.etat=2;
-        }
-        if (this.login.role == 'employe') {
-            this.login.username = 'employe1';
-            this.login.password = 'employe1';
-            this.etat=3;
-        }
+    if (this.login.role == 'client') {
+      this.login.username = 'client1';
+      this.login.password = 'client1';
+      this.etat = 1;
+    }
+    if (this.login.role == 'admin') {
+      this.login.username = 'charles';
+      this.login.password = '123456';
+      this.etat = 2;
+    }
+    if (this.login.role == 'employe') {
+      this.login.username = 'employe1';
+      this.login.password = 'employe1';
+      this.etat = 3;
+    }
   }
 
   logIn() {
@@ -63,15 +63,15 @@ export class LoginComponent {
     );
   }
 
-  erreur(){
+  erreur() {
     this.loginError = true;
     this.login.username = "";
     this.login.password = "";
     this.loading = false;
   }
 
-  correct(){
-    this.router.navigate(['/'+this.login.role]);
+  correct() {
+    this.router.navigate(['/' + this.login.role]);
   }
 
   home() {

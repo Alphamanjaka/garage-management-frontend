@@ -1,0 +1,10 @@
+[build]
+  command = "ng build --configuration=production && ng run m1p12mean-Andrea-Alpha:build"
+  publish = "dist/m1p12mean-Andrea-Alpha/browser"
+  functions = "netlify/functions"
+
+  [[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+

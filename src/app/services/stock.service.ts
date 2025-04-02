@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/env';
 import { Piece } from '../models/Piece';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StockService {
-  private apiUrl = environment.apiUrl+"/stock/pieces";
+  private apiUrl = environment.apiUrl + "/stock/pieces";
 
   constructor(private http: HttpClient) { }
 
@@ -16,7 +16,7 @@ export class StockService {
     return this.http.get(this.apiUrl);
   }
 
-  searchPiece(pieceName: string): Observable<Piece[]>{
+  searchPiece(pieceName: string): Observable<Piece[]> {
     return this.http.get<Piece[]>(`${this.apiUrl}/search?name=${pieceName}`);
   }
 

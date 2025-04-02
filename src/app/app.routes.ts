@@ -13,7 +13,6 @@ import { StockManagementComponent } from './templates/admin/stock-management/sto
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'offers', component: OfferListComponent },
-    { path: 'login/:role', component: LoginComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     {
         path: 'client', component: TemplateClientComponent,

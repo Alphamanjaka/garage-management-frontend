@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Service de Nettoyage",
+        "categoryId": "1",
+        "description": "Nettoyage complet des espaces résidentiels et commerciaux.",
+        "price": 1200
+    },
+    {
+        "name": "Réparation Électronique",
+        "categoryId": "2",
+        "description": "Service de réparation pour ordinateurs, téléphones et appareils électroniques.",
+        "price": 2500
+    },
+    {
+        "name": "Cours de Musique",
+        "categoryId": "3",
+        "description": "Leçons individuelles pour apprendre le piano, la guitare et le violon.",
+        "price": 1800
+    },
+    {
+        "name": "Consultation Juridique",
+        "categoryId": "4",
+        "description": "Assistance juridique pour contrats, litiges et conseils personnalisés.",
+        "price": 3500
+    },
+    {
+        "name": "Service de Livraison",
+        "categoryId": "5",
+        "description": "Livraison rapide de colis et de marchandises à domicile.",
+        "price": 800
+    }
+]
