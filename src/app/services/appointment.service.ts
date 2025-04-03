@@ -21,6 +21,14 @@ export class AppointmentService {
     return this.http.get<PaginatedResponse>(`${this.apiUrl}/unassigned?page=${page}&limit=${limit}`);
   }
 
+  getPaginatedCurrentTask(page: number, limit: number): Observable<PaginatedResponse> {
+    return this.http.get<PaginatedResponse>(`${this.apiUrl}/current?page=${page}&limit=${limit}`);
+  }
+
+  getPaginatedFinishedTask(page: number, limit: number): Observable<PaginatedResponse> {
+    return this.http.get<PaginatedResponse>(`${this.apiUrl}/finished?page=${page}&limit=${limit}`);
+  }
+
   updateAppointment(id: string, addAppointment: Appointment): Observable<any>{
     return this.http.put(`${this.apiUrl}/${id}`,addAppointment);
   }
