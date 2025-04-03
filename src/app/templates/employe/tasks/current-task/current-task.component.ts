@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { ToastComponent } from '../../../../shared/toast/toast.component';
 import { Appointment } from '../../../../models/Appointment';
 import { Service } from '../../../../models/Service';
+import { log } from 'console';
 
 @Component({
   selector: 'app-current-task',
@@ -14,7 +15,8 @@ import { Service } from '../../../../models/Service';
   styleUrl: './current-task.component.scss'
 })
 export class CurrentTaskComponent {
-  tasks: any[] = [];
+
+  tasks: Appointment[] = [];
   currentPage = 1;
   itemsPerPage = 5;
   totalItems = 0;
@@ -28,6 +30,10 @@ export class CurrentTaskComponent {
   constructor(private appointmentService :AppointmentService, private toastService: ToastService){
     this.taskToUpdate = new Appointment();
     this.serviceToUpdate = new Service();
+  }
+
+  ngOnInit(): void{
+    this.getPaginatedCurrentTask();
   }
 
   get pages(): number[] {
@@ -69,39 +75,38 @@ export class CurrentTaskComponent {
     }
   }
 
-  showSuccessToast() {
-    this.toastService.success("", "Tâche assignée à vous");
+  showSuccessToast(status : string) {
+    this.toastService.success("", "Tâche marquée comme " + status);
   }
 
   initModal(task: Appointment,service : Service) {
     this.taskToUpdate = task;
+    this.serviceToUpdate = service;
+    this.selectedOption = this.serviceToUpdate.status;
   }
 
   updateServiceTask() {
     let idEmp = localStorage.getItem("identifiant") ?? '';
     this.taskToUpdate.employeeId = idEmp;
-    this.tasks = this.tasks.filter(item => item._id !== this.taskToUpdate._id );
-    this.tasks.forEach(t =>{
-
-    })
-    for( let task of this.tasks){
-      if(task._id === this.taskToUpdate._id){
-        for(let service of task.serviceList){
-
-        }
-      }else{
-        continue;
-      }
+    const serviceIndex = this.taskToUpdate.serviceList.findIndex(s => s._id === this.serviceToUpdate._id);
+    if (serviceIndex !== -1) {
+      this.taskToUpdate.serviceList[serviceIndex].status = this.selectedOption; // Modification directe
     }
-
+    
     this.appointmentService.updateAppointment(this.taskToUpdate._id,this.taskToUpdate)
     .subscribe(
       (response)=>{
         this.tasks = this.tasks.filter(item => item._id !== this.taskToUpdate._id );
+        this.showSuccessToast(this.selectedOption);
         this.taskToUpdate = new Appointment() ;
-        this.showSuccessToast()
+        this.getPaginatedCurrentTask();
+
       },
       (error)=>{}
     )
+  }
+
+  refresh() {
+    this.getPaginatedCurrentTask();
   }
 }

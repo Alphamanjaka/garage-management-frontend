@@ -13,7 +13,7 @@ export class AppointmentService {
   private apiUrl = environment.apiUrl+"/appointment";
   constructor(private http: HttpClient) { }
 
-  addAppointment(appointment: Appointment): Observable<any> {
+  addAppointment(appointment: any): Observable<any> {
     return this.http.post(this.apiUrl, appointment);
   }
 

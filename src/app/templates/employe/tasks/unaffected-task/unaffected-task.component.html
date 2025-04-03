@@ -1,7 +1,7 @@
 <div class="table-responsive p-4">
   <div *ngIf="isLoading" class="loading">Chargement en cours...</div>
   <button class="btn btn-sm btn-outline-primary me-1 mb-2" >
-    <i class="fa-solid fa-rotate"></i>
+    <i class="fa-solid fa-rotate" (click)="refresh()"></i>
   </button>
   <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
     <table class="table table-hover align-middle">
