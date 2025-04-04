@@ -9,8 +9,8 @@ const angularAppEngine = new AngularAppEngine();
 export const getPrerenderParams = async () => {
   return [
     { role: 'admin' },
-    { role: 'user' },
-    { role: 'guest' },
+    { role: 'client' },
+    { role: 'employe' },
   ];
 };
 
