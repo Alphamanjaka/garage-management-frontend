@@ -7,10 +7,11 @@ import { ToastComponent } from '../../../../shared/toast/toast.component';
 import { Appointment } from '../../../../models/Appointment';
 import { Service } from '../../../../models/Service';
 import { log } from 'console';
+import { FormAddingPieceComponent } from "../../../../components/form-adding-piece/form-adding-piece.component";
 
 @Component({
   selector: 'app-current-task',
-  imports: [CommonModule, FormsModule, ToastComponent],
+  imports: [CommonModule, FormsModule, ToastComponent, FormAddingPieceComponent],
   templateUrl: './current-task.component.html',
   styleUrl: './current-task.component.scss'
 })
@@ -26,6 +27,7 @@ export class CurrentTaskComponent {
   taskToUpdate: Appointment;
   serviceToUpdate: Service;
   selectedOption : string ="";
+  isAddingPiece : boolean = false;
 
   constructor(private appointmentService :AppointmentService, private toastService: ToastService){
     this.taskToUpdate = new Appointment();
@@ -79,10 +81,11 @@ export class CurrentTaskComponent {
     this.toastService.success("", "Tâche marquée comme " + status);
   }
 
-  initModal(task: Appointment,service : Service) {
+  onClickOnService(task: Appointment,service : Service) {
     this.taskToUpdate = task;
     this.serviceToUpdate = service;
     this.selectedOption = this.serviceToUpdate.status;
+    this.isAddingPiece = true;
   }
 
   updateServiceTask() {

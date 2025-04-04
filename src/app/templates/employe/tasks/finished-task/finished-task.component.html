@@ -3,7 +3,7 @@
     <button class="btn btn-sm btn-outline-primary me-1 mb-2" >
       <i class="fa-solid fa-rotate" (click)="refresh()"></i>
     </button>
-    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+    <div style="min-height: 60vh;">
       <table class="table table-hover align-middle">
         <thead class="table-light">
           <tr>
@@ -44,6 +44,8 @@
           </tr>
         </tbody>
       </table>
+      <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+    </div>
     <app-toast></app-toast>
     <div class="d-flex justify-content-between align-items-center">
       <div class="controls">

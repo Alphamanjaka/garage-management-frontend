@@ -1,0 +1,90 @@
+<!-- service-view.component.html -->
+<div class="container">
+    <!-- Affichage du service -->
+    <div class="card mb-4">
+      <div class="card-header">
+        <h2>Service: {{ serviceReceived.name }}</h2>
+      </div>
+      <div class="card-body">
+        <p class="mb-0">ID: {{ serviceReceived._id }}</p>
+      </div>
+    </div>
+  
+    <!-- Liste des pièces -->
+    <div class="card mb-4">
+      <div class="card-header">
+        <h3>Liste des pièces ({{ serviceReceived.pieceList.length }})</h3>
+      </div>
+      <div class="card-body">
+        <div *ngIf="serviceReceived.pieceList.length === 0" class="alert alert-info">
+          Aucune pièce disponible
+        </div>
+  
+        <ul class="list-group">
+          <li *ngFor="let piece of serviceReceived.pieceList" class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+              <strong>{{ piece.name }}</strong>
+              <div *ngIf="piece.ref" class="text-muted small">{{ piece.ref }}</div>
+            </div>
+            <button (click)="removePiece(piece._id)" class="btn btn-sm btn-danger">
+              <i class="bi bi-trash"></i> Supprimer
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  
+    <!-- Formulaire d'ajout -->
+    <div class="card">
+      <div class="card-header">
+        <h3>Ajouter une nouvelle pièce</h3>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="pieceForm" (ngSubmit)="addPiece()">
+            <div class="mb-3">
+                <label for="pieceSelect" class="form-label">Sélectionner une pièce</label>
+                
+                <select 
+                  class="form-select" 
+                  id="pieceSelect" 
+                  formControlName="pieceId"
+                  [disabled]="allPieces.length === 0"
+                  required>
+                  
+                  <option value="" disabled selected>Choisir une pièce</option>
+                  <option *ngFor="let piece of allPieces" [value]="piece._id">
+                    {{ piece.name }}
+                  </option>
+                </select>
+                
+                <div *ngIf="pieceForm.get('pieceId')?.invalid && pieceForm.get('pieceId')?.touched" class="text-danger">
+                  La sélection d'une pièce est obligatoire
+                </div>
+                
+                <div *ngIf="allPieces.length === 0" class="text-info mt-2">
+                  Toutes les pièces disponibles ont déjà été ajoutées
+                </div>
+              </div>
+              
+              <div class="mb-3">
+                <label for="pieceDescription" class="form-label">Description (optionnelle)</label>
+                <textarea 
+                  class="form-control" 
+                  id="pieceDescription" 
+                  formControlName="description" 
+                  rows="2"
+                  placeholder="Ajouter une description spécifique..."></textarea>
+              </div>
+  
+          <!-- <div class="mb-3">
+            <label for="pieceDescription" class="form-label">Description (optionnelle)</label>
+            <textarea class="form-control" id="pieceDescription" formControlName="description" rows="2"></textarea>
+          </div> -->
+  
+          <button type="submit" class="btn btn-primary" [disabled]="pieceForm.invalid">
+            <i class="bi bi-plus-circle"></i> Ajouter la pièce
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
