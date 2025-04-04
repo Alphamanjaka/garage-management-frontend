@@ -6,11 +6,14 @@ const angularAppEngine = new AngularAppEngine();
 /**
  * Fonction qui définit les paramètres de pré-rendu
  */
-export function getPrerenderParams() {
-  return {
-    '/login/:role': ['admin', 'user', 'guest'] // Liste des rôles acceptés pour la pré-rendition
-  };
-}
+export const getPrerenderParams = async () => {
+  return [
+    { role: 'admin' },
+    { role: 'user' },
+    { role: 'guest' },
+  ];
+};
+
 
 /**
  * Gestionnaire des requêtes Netlify
