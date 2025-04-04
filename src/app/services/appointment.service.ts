@@ -13,12 +13,20 @@ export class AppointmentService {
   private apiUrl = environment.apiUrl+"/appointment";
   constructor(private http: HttpClient) { }
 
-  addAppointment(appointment: Appointment): Observable<any> {
+  addAppointment(appointment: any): Observable<any> {
     return this.http.post(this.apiUrl, appointment);
   }
 
   getPaginatedUnassignedTask(page : number, limit: number): Observable<PaginatedResponse> {
     return this.http.get<PaginatedResponse>(`${this.apiUrl}/unassigned?page=${page}&limit=${limit}`);
+  }
+
+  getPaginatedCurrentTask(page: number, limit: number): Observable<PaginatedResponse> {
+    return this.http.get<PaginatedResponse>(`${this.apiUrl}/current?page=${page}&limit=${limit}`);
+  }
+
+  getPaginatedFinishedTask(page: number, limit: number): Observable<PaginatedResponse> {
+    return this.http.get<PaginatedResponse>(`${this.apiUrl}/finished?page=${page}&limit=${limit}`);
   }
 
   updateAppointment(id: string, addAppointment: Appointment): Observable<any>{

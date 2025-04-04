@@ -1,0 +1,28 @@
+/* service-view.component.css */
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+  }
+  
+  .card {
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .list-group-item {
+    transition: all 0.3s ease;
+  }
+  
+  .list-group-item:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .service-status:hover {
+    color: #007bff;
+    cursor: pointer;
+}
