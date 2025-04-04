@@ -17,7 +17,8 @@ import { InscriptionComponent } from './components/inscription/inscription.compo
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
-    { path: 'offers', component: OfferListComponent },
+  { path: 'offers', component: OfferListComponent },
+  
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'login/:role', component: LoginComponent },
     { path: 'signin', component: InscriptionComponent },

@@ -63,7 +63,7 @@ header {
       }
 
       &.btn-login {
-        background-color: #007bff; // Bleu pour "Se connecter"
+        background-color: val(--primary-color); // Bleu pour "Se connecter"
       }
     }
   }
