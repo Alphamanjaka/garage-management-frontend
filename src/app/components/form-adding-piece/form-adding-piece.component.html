@@ -1,0 +1,131 @@
+<!-- service-view.component.html -->
+<div class="container">
+    <!-- Affichage du service -->
+    <div class="card mb-4">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <div>
+          <h3>Service: {{ serviceReceived.name }}</h3>
+        </div>
+        <div class="">
+          <p class="service-status" data-bs-toggle="modal" data-bs-target="#statusModal">Statut: {{serviceReceived.status}}</p>
+        </div>
+      </div>
+      
+      <div class="card-body">
+        <p class="mb-0">ID: {{ serviceReceived._id }}</p>
+      </div>
+    </div>
+  
+    <!-- Liste des pièces -->
+    <div class="card mb-4">
+      <div class="card-header">
+        <h4>Liste des pièces ({{ serviceReceived.pieceList.length }})</h4>
+      </div>
+      <div class="card-body">
+        <div *ngIf="serviceReceived.pieceList.length === 0" class="alert alert-info">
+          Aucune pièce disponible
+        </div>
+  
+        <ul class="list-group">
+          <li *ngFor="let item of serviceReceived.pieceList" class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+              <strong>{{ item.piece.name }} ({{ item.quantity }})</strong>
+              <div *ngIf="item.piece.ref" class="text-muted small">{{ item.piece.ref }}</div>
+            </div>
+            <button (click)="removePiece(item.piece._id)" class="btn btn-sm btn-danger">
+              <i class="bi bi-trash"></i> Supprimer
+            </button>
+          </li>
+        </ul>
+        <div class="d-flex justify-content-end">
+          <div>
+            <button class="btn btn-sm btn-primary mt-2" (click)="saveModification()">Sauvegarder</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Formulaire d'ajout -->
+    <div class="card">
+      <div class="card-header">
+        <h3>Ajouter une nouvelle pièce</h3>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="pieceForm" (ngSubmit)="addPiece()">
+            <div class="mb-3">
+                <label for="pieceSelect" class="form-label">Sélectionner une pièce</label>
+                
+                <select 
+                  class="form-select" 
+                  id="pieceSelect" 
+                  formControlName="pieceId"
+                  [disabled]="allPieces.length === 0"
+                  required>
+                  
+                  <option value="" disabled selected>Choisir une pièce</option>
+                  <option *ngFor="let piece of allPieces" [value]="piece._id">
+                    {{ piece.name }}
+                  </option>
+                </select>
+                
+                <div *ngIf="pieceForm.get('pieceId')?.invalid && pieceForm.get('pieceId')?.touched" class="text-danger">
+                  La sélection d'une pièce est obligatoire
+                </div>
+                
+                <div *ngIf="allPieces.length === 0" class="text-info mt-2">
+                  Toutes les pièces disponibles ont déjà été ajoutées
+                </div>
+              </div>
+              
+              <div class="mb-3">
+                <label for="pieceQtt" class="form-label">Quantité</label>
+                <input 
+                  type="number"
+                  class="form-control" 
+                  id="pieceQtt" 
+                  formControlName="pieceQtt" 
+                  min="0"
+                  placeholder="Nombre de pièce...">
+              </div>
+  
+          <div class="d-flex justify-content-end">
+            <div>
+              <button type="submit" class="btn btn-primary" [disabled]="pieceForm.invalid">
+                <i class="bi bi-plus-circle"></i> Ajouter la pièce
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+<app-toast></app-toast>
+
+<div class="modal fade" id="statusModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modification du statut de la tâche</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex input-group mb-2 justify-content-between">
+          <div class="p-2">
+            <label for="service-opt">Statut de la tâche: <strong>{{this.serviceReceived.name}}</strong></label>
+          </div>
+          <div class="p-2">
+              <select  [(ngModel)]="selectedOption" name="" id="status-opt">
+                  <option value="En attente">En attente</option>
+                  <option value="En cours">En cours</option>
+                  <option value="Terminée">Terminée</option>
+              </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="updateServiceTask()">Confirmer</button>
+        </div>
+    </div>
+  </div>
+  </div>
+</div>

@@ -91,7 +91,15 @@ export class ServiceListComponent {
     this.appointment.carInfo = this.carModel ;
     this.appointment.serviceList = this.selectedOptions ;
 
-    this.appointmentService.addAppointment(this.appointment)
+    console.log(this.appointment);
+    const appointmt = {
+      "clientID": id,
+      "serviceList": this.appointment.serviceList,
+      "expectedDate": this.appointment.expectedDate,
+      "carInfo": this.carModel
+    }
+    
+    this.appointmentService.addAppointment(appointmt)
     .subscribe(
       (response) => {
         this.showToast("", "Demande effectuée");
@@ -99,7 +107,9 @@ export class ServiceListComponent {
         this.selectedOptions = [];
         this.searchTerm = "";
       },
-      (error)=>{},
+      (error)=>{
+        console.error(error)
+      },
     )
   }
 

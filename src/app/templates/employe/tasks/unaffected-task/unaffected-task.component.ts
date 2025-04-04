@@ -38,6 +38,10 @@ export class UnaffectedTaskComponent {
     this.getPaginatedUnassignedTask();
   }
 
+  refresh() {
+    this.getPaginatedUnassignedTask();
+  }
+
   getStatusLabel(arg0: any) {
 
   }
@@ -61,6 +65,7 @@ export class UnaffectedTaskComponent {
   assignTask() {
     let idEmp = localStorage.getItem("identifiant") ?? '';
     this.taskToAssign.employeeId = idEmp;
+    this.taskToAssign.serviceList.forEach(service => service.status = "En attente");
     this.appointmentService.updateAppointment(this.taskToAssign._id,this.taskToAssign)
     .subscribe(
       (response)=>{
