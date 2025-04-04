@@ -57,3 +57,10 @@ export const routes: Routes = [
         ]
     }
 ];
+export const getPrerenderParams = async () => {
+  return [
+    { role: 'admin' },
+    { role: 'client' },
+    { role: 'employe' },
+  ];
+};
