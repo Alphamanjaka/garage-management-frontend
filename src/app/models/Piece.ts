@@ -10,3 +10,8 @@ export class Piece {
         this.ref = '';
     }
 }
+
+export interface PieceAdded {
+    piece: Piece;
+    quantity: number;
+  }

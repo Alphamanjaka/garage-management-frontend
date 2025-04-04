@@ -27,7 +27,6 @@
               </td>
               <td class="text-center">
                 <div class="text-start">
-                  <!-- data-bs-toggle="modal" data-bs-target="#affectationModal" -->
                   <li class="list-service icon-link-hover"
                    style="margin-left: 12px;" *ngFor="let service of task.serviceList"
                     (click)="onClickOnService(task, service)"> {{service.name}}</li>
@@ -87,30 +86,3 @@
     
       
 </div>
-  <div class="modal fade" id="affectationModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modification du statut de la tâche</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="d-flex input-group mb-2 justify-content-between">
-            <div class="p-2">
-              <label for="service-opt">Statut de la tâche: <strong>{{this.serviceToUpdate.name}}</strong></label>
-            </div>
-            <div class="p-2">
-                <select  [(ngModel)]="selectedOption" name="" id="status-opt">
-                    <option value="En attente">En attente</option>
-                    <option value="En cours">En cours</option>
-                    <option value="Terminée">Terminée</option>
-                </select>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="updateServiceTask()">Confirmer</button>
-          </div>
-      </div>
-    </div>
-  </div>

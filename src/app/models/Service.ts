@@ -1,11 +1,11 @@
-import { Piece } from "./Piece";
+import { Piece, PieceAdded } from "./Piece";
 
 export class Service {
     _id: string;
     name: string;
     categoryId: string;
     status: string;
-    pieceList: Piece[];
+    pieceList: PieceAdded[];
     constructor() {
         this._id = '';
         this.name = '';
